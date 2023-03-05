@@ -6,40 +6,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Whatsapp5</title>
 </head>
 <body>
-    <div id="principal">
-        <div id="usuarios">
-            <div id="usuario"><i class="fa fa-users" aria-hidden="true"></i></div>
-            <div id="contactos">
-                <ul>
-                    <li>Contacto1</li>
-                    <li>Contacto2</li>
-                    <li>Contacto3</li>
-                    <li>Contacto4</li>
-                </ul>
+    <form id="form_datos">
+        <input type="text" placeholder="Nombre..." id="nombre" required>
+        <input type="text" placeholder="Estado..." id="estado" required>
+        <div id="avatares">
+            <div class="avatar">
+                <label for="avatar1"><img src="./imagenes/avatar1.png" alt=""></label>
+                <input type="radio" name="avatars" id="avatar1" value="./imagenes/avatar1.png" required>
+            </div>
+            <div class="avatar">
+                <label for="avatar2"><img src="./imagenes/avatar2.png" alt=""></label>
+                <input type="radio" name="avatars" id="avatar2" value="./imagenes/avatar2.png">
+            </div>
+            <div class="avatar">
+                <label for="avatar3"><img src="./imagenes/avatar3.png" alt=""></label>
+                <input type="radio" name="avatars" id="avatar3" value="./imagenes/avatar3.png">
             </div>
         </div>
-        <div id="mensajeria">
-            <div id="datos">
-                <div id="nombre">Nombre</div>
-            </div>
-            <div id="div_mensajes">
-                <ul id="mensajes">
-        
-                </ul>
-            </div>
-            <div id="mensaje">
-                <form id="form_mensaje" action="">
-                    <label for="input_mensaje"></label>
-                    <input type="text" id="input_mensaje">
-                    <button id="enviar">Enviar</button>
-                </form>
-            </div>
-        </div>
-    </div>
+        <input type="submit" value="Entrar al chat">
+    </form>
 </body>
 <script src="/socket.io/socket.io.js"></script>
-<script src="./cliente/cliente.js"></script>
+<!-- <script src="./cliente/cliente.js"></script> -->
+<script>
+    var socket = io();
+
+    var form_mensaje = document.getElementById('form_mensaje');
+    var input_mensaje = document.getElementById('input_mensaje');
+
+    var form_datos = document.getElementById('form_datos');
+
+    var usuarios = [];
+
+    socket.on('mensaje2', function(mensaje){
+        escribirMensaje(mensaje);
+    });
+
+    function escribirMensaje(mensaje){
+        ul = document.getElementById('mensajes');
+        ul.innerHTML = "<li>" + mensaje + "</li>" + ul.innerHTML;
+    }
+
+
+    form_datos.addEventListener('submit', function(e){
+        e.preventDefault();
+        console.log('hola');
+        var nombre = $("#nombre").val();
+        var estado = $("#estado").val();
+        var foto = $("input[name='avatars']:checked").val();
+        console.log(foto);
+        socket.emit("datos", {nombre: nombre, estado: estado, foto: foto});
+    });
+
+    socket.on("datos2", (data) =>{
+
+        if(!usuarios.includes(data)){
+            usuarios.push(data);
+        }
+        else{
+            var pos = usuarios.indexOf(data);
+            usuarios[pos] = data;
+        }
+        cambiarVista(data);
+    })
+
+    socket.on("conectado", (nombre, data) => {
+        $("#conexion").append(nombre + " se ha conectado");
+        console.log(data);
+        console.log(data.foto);
+        $("#usuario_concreto").append(`<li><img src="${data.foto}"><p id="nombre_p">${data.nombre}</p></li><p id="escribiendo">Escribiendo...</p>`);
+    })
+
+    socket.on("desconectado", (nombre) => {
+        $("#conexion").append(nombre + " se ha desconectado");
+    })
+
+    function cambiarVista(data){
+        console.log('cambiando vista');
+        var body = document.getElementsByTagName('body')[0];
+        body.innerHTML = `<div id="principal"> <div id="usuarios"> <div id="usuario"> <img src="${data.foto}"><p id="nombre_p"> <i class="fa fa-users" aria-hidden="true"></i></div> <div id="contactos"> <ul id="usuario_concreto"> </ul> </div> </div> <div id="mensajeria"> <div id="datos"> <div id="nombre"> </div> <div id="estado"> </div> <i class="fa fa-search" aria-hidden="true"></i> </div> <div id="div_mensajes"> <div id="conexion"> </div> <ul id="mensajes">    </ul> </div> <div id="mensaje"> <i class="fa fa-paperclip" aria-hidden="true"></i> <input type="text" id="input_mensaje" placeholder="Escribe un mensaje aquí"></div> </div> </div>`
+    }
+
+    // function escribirDatos(datos){
+    //     div_nombre = document.getElementById('nombre');
+    //     div_estado = document.getElementById('estado');
+    //     div_nombre.innerHTML = datos.nombre;
+    //     div_estado.innerHTML = datos.estado;
+    // }
+
+    // form_mensaje.addEventListener('submit', function(e){
+    //     e.preventDefault();
+    //     if(input_mensaje.value){
+    //         socket.emit('mensaje', input_mensaje.value);
+    //         // console.log(mensaje.value);
+    //         input_mensaje.value = '';
+    //     }
+    // });
+    
+    $(document).on("keyup", "#input_mensaje", function(e){
+        if(e.keyCode == 13){
+            socket.emit('mensaje', $("#input_mensaje").val());
+            // console.log(mensaje.value);
+            $("#input_mensaje").val("");
+        }
+
+        if($("#input_mensaje").val() != ""){
+            socket.emit("escribiendo", true);
+        }
+        else{
+            socket.emit("escribiendo", false);
+        }
+    });
+
+    socket.on("escribiendo", (dato) => {
+        if(dato){
+            $("#escribiendo").css("display", "block");
+        }
+        else{
+            $("#escribiendo").css("display", "none");
+        }
+    })
+
+</script>
 </html>

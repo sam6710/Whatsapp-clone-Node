@@ -25,6 +25,32 @@ function escribirMensaje(mensaje){
     ul.innerHTML = "<li>" + mensaje + "</li>" + ul.innerHTML;
 }
 
+// Landing
+
+var form_datos = document.getElementById('form_datos');
+
+form_datos.addEventListener('submit', function(e){
+    e.preventDefault();
+    console.log('hola');
+    var nombre = document.getElementById('nombre').value;
+    var estado = document.getElementById('estado').value;
+    var foto = document.getElementById('foto').files[0];
+    var formData = new FormData();
+    formData.append('nombre', nombre);
+    formData.append('estado', estado);
+    formData.append('foto', foto);
+    fetch('/landing', {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+});
+
+
+// Fin landing
+
 //Subida foto
 
 // var form_foto = document.getElementById('form_foto');

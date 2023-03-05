@@ -6,14 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/landing.css">
     <title>Landing-Whatsapp</title>
-    <script src="./cliente/cliente.js"></script>
+    <!-- <script src="./cliente/cliente.js"></script> -->
 </head>
 <body>
-    <form id="form_foto">
-        <input type="text">
-        <input type="text">
-        <input type="file" accept="image/*">
-        <input type="submit" value="Entrar al chat">
+    <form id="form_datos">
+        <input type="text" placeholder="Nombre..." id="nombre">
+        <input type="text" placeholder="Estado..." id="estado">
+        <input type="file" accept="image/*" id="foto">
+        <!-- <input type="submit" placeholder="Entrar al chat"> -->
+        <button>Entrar al chat</button>
     </form>
 </body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+    var socket = io();
+
+    // Landing
+
+    var form_datos = document.getElementById('form_datos');
+
+    form_datos.addEventListener('submit', function(e){
+        e.preventDefault();
+        console.log('hola');
+        var nombre = document.getElementById('nombre').value;
+        var estado = document.getElementById('estado').value;
+        var foto = document.getElementById('foto').files[0];
+        // var formData = new FormData();
+        var datos = {
+            nombre: nombre,
+            estado: estado,
+            foto: foto
+        }
+        console.log(nombre, estado, foto);
+        socket.emit("datos", datos);
+        // formData.append('nombre', nombre);
+        // formData.append('estado', estado);
+        // formData.append('foto', foto);
+        // fetch('/landing', {
+        //     method: 'POST',
+        //     body: formData
+        // })
+        // .then(res => res.json())
+        // .then(res => console.log(res))
+        // .catch(err => console.log(err));
+    });
+
+    socket.on("datos2", (usuarios) =>{
+        console.log(usuarios);
+    })
+
+
+    // Fin landing
+</script>
 </html>

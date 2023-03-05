@@ -17,17 +17,28 @@ body{
     width: 30%;
     height: 100%;
     background-color: #202c33;
+    border-right: 1px solid #2a3942;
 }
 #usuario{
-    height: 5%;
+    height: 5.8vh;
+    display: flex;
+}
+#usuario img{
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
 }
 #contactos{
     background-color: #111b21;
-    height: 95%;
+    height: 93%;
     color: white;
 }
 .fa{
     color: #aebac1;
+}
+.fa-paperclip{
+    margin-left: 2.4rem;
 }
 #mensajeria{
     height: 100%;
@@ -36,14 +47,26 @@ body{
 #datos{
     background-color: #202c33;
     color: white;
-    height: 5%;
+    height: 7vh;
+    display: flex;
+}
+#datos #nombre{
+    margin-left: 2rem;
+    margin-top: 0.4rem;
+    font-size: 1.2rem;
+}
+#datos #estado{
+    color: gray;
+    margin-left: 1rem;
+    margin-top: 0.77rem;
+    font-size: 0.8rem;
 }
 #div_mensajes{
     background-image: url(../imagenes/1573497171_487815_1573497337_sumario_normal.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    height: 90%;
+    height: 82%;
     color: white;
 }
 ul{
@@ -56,6 +79,8 @@ ul{
     width: min-content;
     max-width: 60%;
     margin-bottom: 0.2rem;
+    overflow-wrap: break-word;
+    margin-left: 0.4rem;
 }
 input{
     background-color: #2a3942;
@@ -64,7 +89,91 @@ input{
     border-radius: 0.3rem;
     padding: 0.5rem;
 }
+#input_mensaje{
+    margin-top: 0.35rem;
+    width: 80%;
+    height: 1.2rem;
+    margin-left: 10%;
+}
 #mensaje{
-    height: 5%;
+    height: 8vh;
     background-color: #202c33;
+}
+#form_datos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 4rem;
+}
+#form_datos input{
+    margin-bottom: 1rem;
+}
+#form_datos input:last-child{
+    background-color: #005c4b;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+}
+#form_datos input:last-child:hover{
+    background-color: #007c6b;
+}
+#form_datos input[type=file]{
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+}
+.fa-users{
+    position: absolute;
+    top: 1.5rem;
+    left: 20rem;
+}
+.fa-search{
+    position: absolute;
+    right: 7rem;
+    top: 1.4rem;
+}
+#conexion{
+    color: white;
+    padding: 0.4rem;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+}
+#escribiendo{
+    display: none;
+    color: #005c4b;
+    text-align: center;
+}
+#avatares{
+    display: flex;
+}
+.avatar{
+    display: flex;
+    flex-direction: column;
+}
+.avatar img{
+    width: 10rem;
+    height: 10rem;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+}
+#usuario_concreto li{
+    display: flex;
+    justify-content: center;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+}
+#usuario_concreto #nombre_p{
+    margin-left: 0.4rem;
+    margin-top: 1.5rem;
+    font-size: 1.6rem;
+}
+#usuario_concreto img{
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-top: 0.5rem;
 }
