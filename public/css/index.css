@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #111b21;
+}
+#principal{
+    display: flex;
+    flex-direction: row;
+    width: 86%;
+    height: 98vh;
+    margin-top: 1%;
+    margin-left: 7%;
+}
+#usuarios{
+    width: 30%;
+    height: 100%;
+    background-color: #202c33;
+}
+#usuario{
+    height: 5%;
+}
+#contactos{
+    background-color: #111b21;
+    height: 95%;
+    color: white;
+}
+.fa{
+    color: #aebac1;
+}
+#mensajeria{
+    height: 100%;
+    width: 70%;
+}
+#datos{
+    background-color: #202c33;
+    color: white;
+    height: 5%;
+}
+#div_mensajes{
+    background-image: url(../imagenes/1573497171_487815_1573497337_sumario_normal.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 90%;
+    color: white;
+}
+ul{
+    list-style: none;
+}
+#mensajeria li{
+    padding: 6px 7px 6px 7px;
+    background-color: #005c4b;
+    border-radius: 0.3rem;
+    width: min-content;
+    max-width: 60%;
+    margin-bottom: 0.2rem;
+}
+input{
+    background-color: #2a3942;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+}
+#mensaje{
+    height: 5%;
+    background-color: #202c33;
+}

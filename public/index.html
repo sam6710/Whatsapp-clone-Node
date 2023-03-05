@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Whatsapp5</title>
+</head>
+<body>
+    <div id="principal">
+        <div id="usuarios">
+            <div id="usuario"><i class="fa fa-users" aria-hidden="true"></i></div>
+            <div id="contactos">
+                <ul>
+                    <li>Contacto1</li>
+                    <li>Contacto2</li>
+                    <li>Contacto3</li>
+                    <li>Contacto4</li>
+                </ul>
+            </div>
+        </div>
+        <div id="mensajeria">
+            <div id="datos">
+                <div id="nombre">Nombre</div>
+            </div>
+            <div id="div_mensajes">
+                <ul id="mensajes">
+        
+                </ul>
+            </div>
+            <div id="mensaje">
+                <form id="form_mensaje" action="">
+                    <label for="input_mensaje"></label>
+                    <input type="text" id="input_mensaje">
+                    <button id="enviar">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./cliente/cliente.js"></script>
+</html>
