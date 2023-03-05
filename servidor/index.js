@@ -75,6 +75,10 @@ io.on('connection', (socket) => {
     //Fin subida Fotos
 });
 
+app.post('/uploads', function(req, res) {
+    console.log(req.files.file_input); // the uploaded file object
+  });
+
 server.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });

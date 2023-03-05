@@ -39,6 +39,7 @@ body{
 }
 .fa-paperclip{
     margin-left: 2.4rem;
+    margin-top: 0.8rem;
 }
 #mensajeria{
     height: 100%;
@@ -176,4 +177,15 @@ input{
     width: 3.2rem;
     height: 3.2rem;
     margin-top: 0.5rem;
+}
+#inputs{
+    display: flex;
+}
+#file_input{
+    /* visibility: hidden; */
+    margin-top: 0.3rem;
+
+}
+#form_inputs{
+    display: flex;
 }

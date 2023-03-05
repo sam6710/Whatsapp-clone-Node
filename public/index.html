@@ -88,7 +88,7 @@
     function cambiarVista(data){
         console.log('cambiando vista');
         var body = document.getElementsByTagName('body')[0];
-        body.innerHTML = `<div id="principal"> <div id="usuarios"> <div id="usuario"> <img src="${data.foto}"><p id="nombre_p"> <i class="fa fa-users" aria-hidden="true"></i></div> <div id="contactos"> <ul id="usuario_concreto"> </ul> </div> </div> <div id="mensajeria"> <div id="datos"> <div id="nombre"> </div> <div id="estado"> </div> <i class="fa fa-search" aria-hidden="true"></i> </div> <div id="div_mensajes"> <div id="conexion"> </div> <ul id="mensajes">    </ul> </div> <div id="mensaje"> <i class="fa fa-paperclip" aria-hidden="true"></i> <input type="text" id="input_mensaje" placeholder="Escribe un mensaje aquí"></div> </div> </div>`
+        body.innerHTML = `<div id="principal"> <div id="usuarios"> <div id="usuario"> <img src="${data.foto}"><p id="nombre_p"> <i class="fa fa-users" aria-hidden="true"></i></div> <div id="contactos"> <ul id="usuario_concreto"> </ul> </div> </div> <div id="mensajeria"> <div id="datos"> <div id="nombre"> </div> <div id="estado"> </div> <i class="fa fa-search" aria-hidden="true"></i> </div> <div id="div_mensajes"> <div id="conexion"> </div> <ul id="mensajes">    </ul> </div> <div id="mensaje"> <div id="inputs"> <i class="fa fa-paperclip" aria-hidden="true"></i> <input type="text" id="input_mensaje" placeholder="Escribe un mensaje aquí"> </div> </div> </div> </div>`
     }
 
     // function escribirDatos(datos){
